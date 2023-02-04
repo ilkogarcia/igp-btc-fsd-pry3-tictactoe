@@ -1,0 +1,26 @@
+/*
+* Style sheet with the element styles used in 
+* the game rules view.
+* ------------------------------------------------------
+*/
+
+h2 {
+    font-family: Chango;
+    font-size: calc(1.8rem + 0.390625vw);
+    color: var(--green-color);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    font-family: Comfortaa;
+    font-size: calc(1.2rem + 0.390625vw);
+    line-height: calc(1.6rem + 0.390625vw);
+    font-weight: bold;
+    color: var(--black-color);
+    padding-left: 10px;
+    list-style: url('../assets/square-check-solid.svg');
+}

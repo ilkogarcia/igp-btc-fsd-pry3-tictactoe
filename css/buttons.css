@@ -1,0 +1,115 @@
+/*
+* Style sheet with the buttons used in the application
+* ------------------------------------------------------
+*/
+
+/* new game button style */
+.newgame-button {
+    font-family: Chango;
+    font-size: calc(1.1rem + 0.5vh);
+    line-height: calc(1.1rem + 1.0vh);
+    color: var(--red-color);
+    background: var(--white-color);
+    padding: 10px 20px 10px 20px;
+    border: 4px solid rgba(255, 92, 124, 0.8);
+    border-radius: 30px;
+}
+
+/* new game button style change on mouse over event */
+.newgame-button:hover {
+    color: var(--white-color);
+    background: var(--red-color);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transform: scale(1.3);
+}
+
+/* ok button style */
+.ok-button {
+    font-family: Chango;
+    font-size: calc(0.8rem + 0.5vh);
+    line-height: calc(0.8rem + 1.0vh);
+    color: var(--green-color);
+    background: var(--white-color);
+    padding: 10px 20px 10px 20px;
+    border: 4px solid rgba(160, 228, 165, 0.8);
+    border-radius: 30px;
+}
+
+/* ok button style change on mouse over event */
+.ok-button:hover {
+    color: var(--white-color);
+    background: var(--green-color);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transform: scale(1.3);
+}
+
+/* help button style */
+.help-button {
+    width: 50px;
+    height: 50px;
+    font-family: Chango;
+    font-size: calc(0.8rem + 0.5vh);
+    line-height: calc(0.8rem + 1.0vh);
+    color: var(--green-color);
+    background: var(--white-color);
+    padding: 10px;
+    border: 4px solid rgba(160, 228, 165, 0.8);
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    opacity: 0.5;
+}
+
+/* help button style on mouse over event */
+.help-button:hover {
+    color: var(--white-color);
+    background: var(--green-color);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transform: scale(1.3);
+    opacity: 1;
+}
+
+/* play button style */
+.play-button {
+    font-family: Chango;
+    font-size: calc(1.1rem + 0.5vh);
+    line-height: calc(1.1rem + 1.0vh);
+    color: var(--green-color);
+    background: var(--white-color);
+    padding: 10px 20px 10px 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 4px solid rgba(160, 228, 165, 0.8);
+    border-radius: 30px;
+}
+
+/* play button style on mouse over event */
+.play-button:hover {
+    color: var(--white-color);
+    background: var(--green-color);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transform: scale(1.3);
+}
+
+/* cancel button style */
+.cancel-button {
+    font-family: Chango;
+    font-size: calc(1.1rem + 0.5vh);
+    line-height: calc(1.1rem + 1.0vh);
+    color: rgb(92, 124, 255);
+    background: var(--white-color);
+    padding: 10px 20px 10px 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 4px solid rgba(92, 124, 255, 0.8);
+    border-radius: 30px;
+}
+
+/* cancel button style on mouse over event */
+.cancel-button:hover {
+    color: var(--white-color);
+    background: rgb(92, 124, 255);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transform: scale(1.3);
+}

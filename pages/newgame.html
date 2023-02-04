@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe: the game is on!!!</title>
+    <title>Tic-Tac-Toe: New Game Setup</title>
     
     <!-- Link ico used on the app -->
     <link rel="shortcut icon" href="./assets/tictactoe.ico" sizes="16x16 24x24 32x32 48x48 64x64" >
@@ -15,31 +15,29 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/containers.css">
     <link rel="stylesheet" href="../css/buttons.css">
-    <link rel="stylesheet" href="../css/tictactoe.css">
+    <link rel="stylesheet" href="../css/newgame.css">
 
 </head>
 <body>
-    <div class="container gamepage-container" id="gamepage-container">
+    <div class="container setuppage-container" id="setuppage-container">
         <div class="title-box">
             <div class="title-logo"></div>
             <div class="title-name"><p class="">TIC TAC TOE</p></div>
         </div>
-        <div class="gameboard-box" id="gameboard">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+        <div class="form-box">
+            <div class="datainput-box">
+                <h2>PLAYER 1</h2>
+                <input type="text" id="player1" name="player1" required minlength="4" maxlength="8" size="10">
+            </div>
+            <div class="datainput-box">
+                <h2>PLAYER 2</h2>
+                <input type="text" id="player2" name="player2" required minlength="4" maxlength="8" size="10">
+            </div>
+            <div>
+                <button type="button" class="play-button"  onclick="window.open('../pages/tictactoe.html','_self','')">PLAY</button>
+                <button type="button" class="cancel-button"  onclick="window.open('../index.html','_self','')">CANCEL</button>
+            </div>
         </div>
-    
-
-
-        <div class="scoreboard-box">bbb</div>
     </div>
-
 </body>
 </html>
