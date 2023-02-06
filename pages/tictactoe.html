@@ -12,33 +12,39 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chango">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <!-- Link the style sheets specially designed for the application -->
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/containers.css">
-    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/tictactoe.css">
 
 </head>
 <body>
-    <div class="container gamepage-container" id="gamepage-container">
-        <div class="title-box">
-            <div class="title-logo"></div>
-            <div class="title-name"><p class="">TIC TAC TOE</p></div>
+    <div class="mainContainer" id="mainContainer">
+        <div class="Topbar">
+            <div class="Topbar-logo"></div>
+            <div class="Topbar-name">
+                <p class="">TIC TAC TOE</p>
+            </div>
         </div>
-        <div class="gameboard-box" id="gameboard">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+        <div class="Gameboard" id="Gameboard">
+            <div class="Gameboard-cell isTopLeftCorner"></div>
+            <div class="Gameboard-cell"></div>
+            <div class="Gameboard-cell isTopRightCorner"></div>
+            <div class="Gameboard-cell"></div>
+            <div class="Gameboard-cell"></div>
+            <div class="Gameboard-cell"></div>
+            <div class="Gameboard-cell isBottomLeftCorner"></div>
+            <div class="Gameboard-cell"></div>
+            <div class="Gameboard-cell isBottomRightCorner"></div>
         </div>
-    
-
-
-        <div class="scoreboard-box">bbb</div>
+        <div class="Scoreboard">
+            <div class="Scoreboard-player1">
+                <p class="Scoreboard-header">1 <span>Jhon</span></p>
+                <p class="Scoreboard-playerscore">1</p>
+            </div>
+            <div class="Scoreboard-player2">
+                <p class="Scoreboard-header">2 <span>Olivia</span></p>
+                <p class="Scoreboard-playerscore">0</p>
+            </div>
+        </div>
     </div>
 
 </body>

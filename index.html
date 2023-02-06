@@ -5,43 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe: Welcome to the game!!!</title>
-
+    
     <!-- Link ico used on the app -->
     <link rel="shortcut icon" href="./assets/tictactoe.ico" sizes="16x16 24x24 32x32 48x48 64x64" >
     <!-- Link Google Fonts used on the app  -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chango">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <!-- Link the style sheets specially designed for the application -->
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/containers.css">
+    <link rel="stylesheet" href="./css/theme.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="../css/buttons.css">
-    <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/rules.css">
 
 </head>
 <body>
-    <div class="container mainpage-container" id="mainpage-container">
-        <div class="app-logo-ico"></div>
-        <div class=""><p class="app-name">TIC TAC TOE</p></div>
+    <div class="mainContainer" id="mainContainer">
+        <div class="Applogo"></div>
+        <div class=""><p class="Appname">TIC TAC TOE</p></div>
         <div>
-            <button type="button" class="newgame-button" onclick="window.open('../pages/newgame.html','_self','')">NEW GAME</button>
+            <button type="button" class="Button Button--newgame" onclick="window.open('../pages/newgame.html','_self','')">NEW GAME</button>
         </div>        
-        <!-- game rules container, initialy hidden -->
-        <div class="rulesview-container" id="rulesview-container">
-            <h2>GAMES RULES</h2>
-            <ul>
-                <li>Each player will have a maximum of three tokens in play.</li>
-                <li>You can place one token at a time each turn.</li>
-                <li>You can only place pieces on a free space on the board.</li>
-                <li>With all the pieces on the board, it will be possible to make position changes.</li>
+        <!-- Rules Pop-Up (initialy hidden) -->
+        <div class="RulesPopUp" id="RulesPopUp">
+            <h2 class="RulesPopUp-header">GAME RULES</h2>
+            <p class="RulesPopUp-paragraph">To play TIC TAC TOE you must respect these rules:</p>
+            <ul class="RulesPopUp-unorderedlist">
+                <li class="RulesPopUp-unorderedlist-element">Each player will have a maximum of three tokens in play.</li>
+                <li class="RulesPopUp-unorderedlist-element">You can place one token at a time each turn.</li>
+                <li class="RulesPopUp-unorderedlist-element">You can only place pieces on a free space on the board.</li>
+                <li class="RulesPopUp-unorderedlist-element">With all the pieces on the board, it will be possible to make position changes.</li>
             </ul>
             <div>
-                <button type="button" class="ok-button" onclick="hideRules()">OK</button>
+                <button type="button" class="Button Button--ok" onclick="hideElement('RulesPopUp')">OK</button>
             </div>
         </div>
         <!-- help button floting on the bottom left corner-->
         <div>
-            <button type="button" class="help-button" onclick="showRules()">?</button>
+            <button type="button" class="Button Button--help" onclick="showElement('RulesPopUp')">?</button>
         </div>
     </div>
     <script src="./js/main.js"></script>

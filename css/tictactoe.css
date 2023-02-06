@@ -1,21 +1,33 @@
 /*
-* Style sheet with the specific styles of the
-* "tictactoe.html" page.
-* ------------------------------------------------------
+This file contains all styles specific to the game board page.
+---------------------------------------------------------------
 */
 
-/* top bar in new game setup page */
-.title-box {
-    grid-column: 2 / 5;
+.mainContainer {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--white-color);
+    background-image: url(../assets/background-3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 2fr 1fr 8fr 2fr 1fr;
+}
+
+/* Top bar  */
+.Topbar {
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    grid-column-gap: 20px;
 }
 
-/* container logo styles */
-.title-logo {
+/* Topbar logo */
+.Topbar-logo {
     height: 40px;
     width: 40px;
     background: transparent;
@@ -25,32 +37,32 @@
     background-position: center;
 }
 
-.title-name {
+/* Topbar name */
+.Topbar-name {
     font-family: Chango;
     font-size: calc(1.2rem + 0.4vw);
     line-height: calc(1.8rem + 0.8vw);
     color: var(--black-color);
     -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
-    align-self: flex-end;
 }
 
-.gameboard-box {
+.Gameboard {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
-    background-color: rgb(27, 147, 51);
-    display: flex;
+    padding: 0px;
+    display: grid;
 	justify-content: center;
 	align-content: center;
 	justify-items: center;
 	align-items: center;
-	/* grid-template-columns: repeat(3, auto) */
-    flex-wrap: wrap;
+	grid-template-columns: repeat(3, auto)
 }
 
-.cell {
-	width: var(--cell-size);
-	height: var(--cell-size);
-	border: 1px solid black;
+.Gameboard-cell {
+	width: 100px;
+	height: 100px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--orange-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -58,8 +70,65 @@
 	cursor: pointer;
 }
 
-.scoreboard-box {
-    grid-column: 4 / 5;
-    grid-row: 3 / 4;
-    background-color: rgb(86, 18, 86);
+.Gameboard-cell.isTopLeftCorner {
+    border-top-left-radius: 20px 20px;
+}
+
+.Gameboard-cell.isTopRightCorner {
+    border-top-right-radius: 20px 20px;
+}
+
+.Gameboard-cell.isBottomLeftCorner {
+    border-bottom-left-radius: 20px 20px;
+}
+
+.Gameboard-cell.isBottomRightCorner {
+    border-bottom-right-radius: 20px 20px;
+}
+
+.Scoreboard {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    padding: 10px 20px 10px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--orange-color);
+    border-radius: 20px;
+}
+
+.Scoreboard-player1 {
+    min-width: 120px;
+    color: var(--dark-blue-color);
+    float: left;
+}
+
+.Scoreboard-player2 {
+    min-width: 120px;
+    color: var(--dark-red-color);
+    float: right;
+}
+
+.Scoreboard-header {
+    font-family: Comfortaa;
+    font-size: calc(0.8rem + 0.390625vw);
+    font-weight: bolder;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.Scoreboard-header span {
+    font-family: Chango;
+    font-size: calc(1.2rem + 0.390625vw);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.Scoreboard-playerscore {
+    font-family: Comfortaa;
+    font-size: calc(2.0rem + 0.390625vw);
+    color: var(--black-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }

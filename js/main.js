@@ -1,9 +1,15 @@
-function showRules() {
-    document.getElementById('rulesview-container').style.visibility = 'visible';
-    return;
+const showElement = (elementId) => {
+    document.getElementById(elementId).style.visibility = 'visible';
 }
 
-function hideRules() {
-    document.getElementById('rulesview-container').style.visibility = 'hidden';
-    return;
+const hideElement = (elementId) => {
+    document.getElementById(elementId).style.visibility = 'hidden';
+}
+
+const validateInputText = (elementId) => {
+    let a = document.getElementById(elementId).value;
+    if ( a == null || a == "") {
+        alert("Please fill all required fields!!!");
+        return false;
+    }
 }

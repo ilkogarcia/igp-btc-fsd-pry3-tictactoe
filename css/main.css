@@ -1,30 +1,75 @@
 /*
-* Main style sheet.
-* ------------------------------------------------------
+This file contains styles that are specific to the index page.
+-----------------------------------------------------------------------------
 */
 
-/* setup color variables used */
-:root {
-    --white-color: rgb(255, 255, 255);
-    --black-color: rgb(0, 0, 0);
-    --red-color: #ff5c7c;
-    --dark-red-color: #FF2953;
-    --orange-color: #FF8E5C;
-    --fucsia-color: #FF5CCD;
-    --blue-color: #5c7cff;
-    --light-blue-color: #5cceff;
-    --dark-blue-color: rgb(41, 191, 255);
-    --green-color: #a0e4a5;
-    --dark-green-color: #78D97F;
-
-    --cell-size: 120px;
-    --color: #81c3fd; 			/* for hover */
-    --color-set: #0275d8; 		/* when set */
-    --l: 10px;					/* X line-width */
+/* Main container */
+.mainContainer {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--white-color);
+    background-image: url(../assets/background-1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    row-gap: calc(1.0rem + 0.39vh);
+    align-items: center;
+    justify-content: center;
 }
 
-/* reset body styles  */
-body {
-    margin: 0;
-    font-size: calc(1.25rem + 0.390625vw);
+/* App logo */
+.Applogo {
+    height: 128px;
+    width: 128px;
+    background: transparent;
+    background-image: url(../assets/tic-tac-toe-128px.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transform: rotate(15deg);
+    transition: transform .7s ease-in-out;
+}
+
+/* App logo (mouse over event) */
+.Applogo:hover {
+    transform: rotate(375deg);
+}
+
+/* .sm < | Small devices and down (landscape, phones) less than 768px */
+@media (max-width: 767.98px) {
+    .Applogo {
+        height: 100px;
+        width: 100px;
+        background-image: url(../assets/tic-tac-toe-128px.png);
+    }    
+}
+
+/* .md = | Medium devices only (tablets) upper 768px and less than 992px */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .Applogo {
+        height: 120px;
+        width: 120px;
+        background-image: url(../assets/tic-tac-toe-256px.png);
+    }    
+}
+
+/* .lg > | Large devices and up (desktops) 992px and up */
+@media (min-width: 992px) {
+    .Applogo {
+        height: 150px;
+        width: 150px;
+        background-image: url(../assets/tic-tac-toe-256px.png);
+    }    
+}
+
+/* App name */
+.Appname {
+    font-family: Chango;
+    font-size: calc(2rem + 0.4vh);
+    line-height: calc(2.2rem + 0.8vh);
+    letter-spacing: 2px;
+    color: var(--black-color);
+    -webkit-text-stroke: 4px rgba(255, 255, 255, 0.3);
 }

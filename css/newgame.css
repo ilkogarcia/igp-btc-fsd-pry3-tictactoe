@@ -1,21 +1,34 @@
 /*
-* Style sheet with the specific styles of the
-* "new game" page.
-* ------------------------------------------------------
+This file contains styles that are specific to the new game page.
+-----------------------------------------------------------------------------
 */
 
-/* top bar in new game setup page */
-.title-box {
+/* Page main container */
+.mainContainer {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--white-color);
+    background-image: url(../assets/background-2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 2fr 1fr 10fr 1fr;
+}
+
+/* Top bar in this page */
+.Topbar {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    grid-column-gap: 20px;
 }
 
-/* container logo styles */
-.title-logo {
+/* Logo in the top bar */
+.Topbar-logo {
     height: 40px;
     width: 40px;
     background: transparent;
@@ -25,7 +38,7 @@
     background-position: center;
 }
 
-.title-name {
+.Topbar-name {
     font-family: Chango;
     font-size: calc(1.2rem + 0.4vw);
     line-height: calc(1.8rem + 0.8vw);
@@ -34,7 +47,7 @@
     align-self: flex-end;
 }
 
-.form-box {
+.Boxform {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
     background-color: rgb(27, 147, 51);
@@ -49,21 +62,21 @@
     justify-content: center;
 }
 
-.datainput-box {
+.Boxform-datainput {
     width: 50%;
     min-width: 250px;
     text-align: center;
     vertical-align: center;
 }
 
-h2 {
+.Boxform-datainput-header {
     font-family: Chango;
     font-size: calc(1.8rem + 0.390625vw);
     color: var(--blue-color);
     -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3);
 }
 
-input[type=text]{
+.Boxform-datainput-text {
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
@@ -75,7 +88,7 @@ input[type=text]{
     font-size: calc(1.25rem + 0.39vw);
 }
     
-input[type=text]:focus {
+.Boxform-datainput-text:focus {
     outline: none;
     border: 3px solid rgba(92, 124, 255, 0.8);
     color: rgb(92, 124, 255);

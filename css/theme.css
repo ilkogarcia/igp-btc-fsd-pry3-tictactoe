@@ -1,0 +1,31 @@
+/*
+When having several pages this file contains all common styles 
+---------------------------------------------------------------
+*/
+
+/* setup color variables used */
+:root {
+    --white-color: rgb(255, 255, 255);
+    --black-color: rgb(0, 0, 0);
+    --red-color: #ff5c7c;
+    --dark-red-color: #FF2953;
+    --orange-color: #FF8E5C;
+    --fucsia-color: #FF5CCD;
+    --blue-color: #5c7cff;
+    --light-blue-color: #5cceff;
+    --dark-blue-color: rgb(41, 191, 255);
+    --green-color: #a0e4a5;
+    --dark-green-color: #78D97F;
+
+    --cell-size: 40px;
+    --color: #81c3fd; 			/* for hover */
+    --color-set: #0275d8; 		/* when set */
+    --l: 10px;					/* X line-width */
+}
+
+/* reset body styles  */
+body {
+    margin: 0;
+    padding: 0;
+    font-size: calc(1.25rem + 0.390625vw);
+}
