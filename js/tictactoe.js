@@ -1,89 +1,101 @@
-const PLAYER_X_CLASS = 'x';
-const PLAYER_O_CLASS = 'circle';
-const WINNING_COMBINATIONS = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6]
-];
+// const board = new Board(["x", "o", "", "x", "o", "", "o", "", "x"]);
+// board.printFormattedBoard();
+// console.log(board.isTerminal());
+// board.insert("o", 7);
+// board.printFormattedBoard();
+// console.log(board.getAvailableMoves());
+// console.log(board.isTerminal());
 
-const cellElements = document.querySelectorAll('[data-cell]');
-const boardElement = document.getElementById('game-board');
-const winningMessageElement = document.getElementById('winningMessage');
-const restartButton = document.getElementById('restartButton');
-const winningMessageTextElement = document.getElementById('winningMessageText');
-let isPlayer_O_Turn = false;
 
-startGame();
-restartButton.addEventListener('click', startGame);
+//Starts a new game with a certain depth and a startingPlayer of 1 if human is going to start
+function newGame(depth = -1, startingPlayer = 1) {
+    //Instantiating a new player and an empty board
+    const player = new Player(parseInt(depth));
+    const board = new Board(["", "", "", "", "", "", "", "", ""]);
 
-function startGame() {
-	isPlayer_O_Turn = false;
-	cellElements.forEach(cell => {
-		cell.classList.remove(PLAYER_X_CLASS);
-		cell.classList.remove(PLAYER_O_CLASS);
-		cell.removeEventListener('click', handleCellClick);
-		cell.addEventListener('click', handleCellClick, { once: true });
-	})
-	setBoardHoverClass();
-	winningMessageElement.classList.remove('show');
+    //Clearing all #Board classes and populating cells HTML
+    const boardDIV = document.getElementById("Gameboard");
+    boardDIV.className = "";
+    boardDIV.innerHTML = `<div class="cells-wrap">
+            <button class="cell-0"></button>
+            <button class="cell-1"></button>
+            <button class="cell-2"></button>
+            <button class="cell-3"></button>
+            <button class="cell-4"></button>
+            <button class="cell-5"></button>
+            <button class="cell-6"></button>
+            <button class="cell-7"></button>
+            <button class="cell-8"></button>
+        </div>`;
+
+    //Storing HTML cells in an array
+    const htmlCells = [...boardDIV.querySelector(".cells-wrap").children];
+
+    //Initializing some variables for internal use
+    const starting = parseInt(startingPlayer),
+        maximizing = starting;
+    let playerTurn = starting;
 }
 
-function handleCellClick(e) {
-	const cell = e.target
-	const currentClass = isPlayer_O_Turn ? PLAYER_O_CLASS : PLAYER_X_CLASS
-	placeMark(cell, currentClass)
-	if (checkWin(currentClass)) {
-		endGame(false)
-	} else if (isDraw()) {
-		endGame(true)
-	} else {
-		swapTurns()
-		setBoardHoverClass()
-	}
+//If computer is going to start, choose a random cell as long as it is the center or a corner
+if (!starting) {
+    const centerAndCorners = [0, 2, 4, 6, 8];
+    const firstChoice = centerAndCorners[Math.floor(Math.random() * centerAndCorners.length)];
+    const symbol = !maximizing ? "x" : "o";
+    board.insert(symbol, firstChoice);
+    addClass(htmlCells[firstChoice], symbol);
+    playerTurn = 1; //Switch turns
 }
 
-function endGame(draw) {
-    if (draw) {
-        winningMessageTextElement = 'It\'s a draw';
-    } else {
-        winningMessageTextElement.innerText =`Player with ${isPlayer_O_Turn ? "O's" : "X's"} wins!`;
-    }
-    winningMessageElement.classList.add('show');
-}
+//Adding Click event listener for each cell
+board.state.forEach((cell, index) => {
+    htmlCells[index].addEventListener(
+        "click",
+        () => {
+            //If cell is already occupied or the board is in a terminal state or it's not humans turn, return false
+            if (
+                hasClass(htmlCells[index], "x") ||
+                hasClass(htmlCells[index], "o") ||
+                board.isTerminal() ||
+                !playerTurn
+            )
+                return false;
+            const symbol = maximizing ? "x" : "o"; //Maximizing player is always 'x'
+            //Update the Board class instance as well as the Board UI
+            board.insert(symbol, index);
+            addClass(htmlCells[index], symbol);
+            //If it's a terminal move and it's not a draw, then human won
+            if (board.isTerminal()) {
+                drawWinningLine(board.isTerminal());
+            }
+            playerTurn = 0; //Switch turns
+            //Get computer's best move and update the UI
+            player.getBestMove(board, !maximizing, best => {
+                const symbol = !maximizing ? "x" : "o";
+                board.insert(symbol, parseInt(best));
+                addClass(htmlCells[best], symbol);
+                if (board.isTerminal()) {
+                    drawWinningLine(board.isTerminal());
+                }
+                playerTurn = 1; //Switch turns
+            });
+        },
+        false
+    );
+    if (cell) addClass(htmlCells[index], cell);
+});
 
-function isDraw() {
-	return [...cellElements].every(cell => {
-		return cell.classList.contains(PLAYER_X_CLASS) || cell.classList.contains(PLAYER_O_CLASS);
-	})
-}
-
-function placeMark(cell, currentClass) {
-	cell.classList.add(currentClass);
-}
-
-function swapTurns() {
-	isPlayer_O_Turn = !isPlayer_O_Turn;
-}
-
-function setBoardHoverClass() {
-	boardElement.classList.remove(PLAYER_X_CLASS);
-	boardElement.classList.remove(PLAYER_O_CLASS);
-	if (isPlayer_O_Turn) {
-		boardElement.classList.add(PLAYER_O_CLASS);
-	} else {
-		boardElement.classList.add(PLAYER_X_CLASS);
-	}
-}
-
-function checkWin(currentClass) {
-	return WINNING_COMBINATIONS.some(combination => {
-		return combination.every(index => {
-			return cellElements[index].classList.contains(currentClass);
-		})
-	})
-}
+document.addEventListener("DOMContentLoaded", () => {
+    //Start a new game when page loads with default values
+    const depth = -1;
+    const startingPlayer = 1;
+    newGame(depth, startingPlayer);
+    //Start a new game with chosen options when new game button is clicked
+    document.getElementById("newGame").addEventListener("click", () => {
+        const startingDIV = document.getElementById("starting");
+        const starting = startingDIV.options[startingDIV.selectedIndex].value;
+        const depthDIV = document.getElementById("depth");
+        const depth = depthDIV.options[depthDIV.selectedIndex].value;
+        newGame(depth, starting);
+    });
+});

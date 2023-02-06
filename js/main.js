@@ -10,6 +10,5 @@ const validateInputText = (elementId) => {
     let a = document.getElementById(elementId).value;
     if ( a == null || a == "") {
         alert("Please fill all required fields!!!");
-        return false;
     }
 }
