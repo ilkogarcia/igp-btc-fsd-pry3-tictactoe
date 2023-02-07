@@ -1,3 +1,7 @@
+/*
+ * Contains methods for handling user data inputs on game setup.
+ */
+
 // At the beginning the usernames are empty
 let player1Name = "";
 let player2Name = "";
@@ -44,7 +48,7 @@ buttons.map (
                     (validateDataInputs()) ? window.location.assign("./tictactoe.html") : null;
                     break;
                 case 'cancelButton' :
-                    console.log("Volvemos a la pantalla anterior");
+                    window.location.assign("../index.html");
                     break;
             }
         })

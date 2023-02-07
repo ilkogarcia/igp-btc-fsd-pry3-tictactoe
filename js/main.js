@@ -1,6 +1,6 @@
-// Capture "NEW GAME" "button element from Document
-let button = document.getElementById("button-newgame");
-button.addEventListener('click', () => {window.location.assign("./pages/newgame.html")});
+/*
+ * Contains methods common to all pages
+ */
 
 
 // Shows hidden elements in the html @param {string} element Id
@@ -12,4 +12,3 @@ const showElement = (elementId) => {
 const hideElement = (elementId) => {
     document.getElementById(elementId).style.visibility = 'hidden';
 }
-

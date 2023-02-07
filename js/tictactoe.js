@@ -1,5 +1,5 @@
 /*
- * Contains methods for handling user events and game states.
+ * Contains methods for handling user events and game states on game page.
  */
 
 // Setting initial parameters for player 1
@@ -30,31 +30,6 @@ let winningBoard = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-
-// Adding click event listener for each cell on the game board
-let gameBoard = Array.from(document.getElementsByClassName("Gameboard-cell"));
-gameBoard.map (
-    (gameCell) => {
-        gameCell.addEventListener('click', () => {
-            if ((gameCell.innerHTML === "") && (player1Tokens > 0 || player2Tokens > 0)) {
-                // Draw X or O according players turn
-                gameCell.innerHTML = (gameTurn) ? "X" : "O";
-                // Update on memory gameboard status
-                currentBoard[gameCell.id] = (gameTurn) ? "X" : "O";
-                // Check if we have a winner
-                let winner = checkBoardStatus();
-                if (winner != false) {
-                    showWinner(winner.token);
-                }
-                // Decrease a turn to the corresponding player
-                (gameTurn) ? player1Tokens-- : player2Tokens--;
-                // Change in game turn
-                gameTurn = !gameTurn;
-            }
-            gameCell.classList.add('Gameboard-cell-winner');
-        })
-    }
-)
 
 const checkBoardStatus = () => {
     // Checking Horizontal Wins
@@ -96,3 +71,76 @@ const showWinner = (winnerName) => {
     showElement('winner-popup');
 }
 
+// Adding click event listener for each cell on the game board
+let gameBoard = Array.from(document.getElementsByClassName("Gameboard-cell"));
+gameBoard.map (
+    (gameCell) => {
+        gameCell.addEventListener('click', () => {
+            if ((gameCell.innerHTML === "") && (player1Tokens > 0 || player2Tokens > 0)) {
+
+                // Draw X or O according players turn
+                gameCell.innerHTML = (gameTurn) ? "X" : "O";
+
+                // Decrease a turn to the corresponding player
+                (gameTurn) ? player1Tokens-- : player2Tokens--;
+                
+                // Update on memory gameboard status
+                currentBoard[gameCell.id] = (gameTurn) ? "X" : "O";
+                console.log(currentBoard);
+
+                // Check if we have a winner
+                let winner = checkBoardStatus();
+                if (winner != false) {
+                    showWinner(winner.token);
+                    (winner.token === "X") ? increaseScore("player1") : increaseScore("player2");
+                }
+
+                // Change in game turn
+                gameTurn = !gameTurn;
+            }
+        })
+    }
+)
+
+
+// Capture "PLAY AGAIN" button element
+let playAgainButton = document.getElementById("play-button");
+playAgainButton.addEventListener('click', () => {
+    hideElement("winner-popup");
+    resetGame();
+    })
+
+// Capture "NEW GAME" button element
+let newGameButton = document.getElementById("new-button");
+newGameButton.addEventListener('click', () => {
+    hideElement("winner-popup");
+    sessionStorage.clear;
+    window.location.assign("./newgame.html");
+    })
+
+// Increases score of player received by parameter and updates the scoreboard
+const increaseScore = (player) => {
+    switch (player) {
+    case "player1":
+        player1Score++
+        document.getElementById("player1-score").innerHTML = player1Score;
+        break;
+    case "player2":
+        player2Score++
+        document.getElementById("player2-score").innerHTML = player2Score;
+        break;
+    }
+}
+
+// Reset the game board for a new game
+const resetGame = () => {
+
+    gameBoard.map ((gameCell) => gameCell.innerHTML = "");
+
+    player1Tokens = 3;      // Player 1. Max tokens
+    player2Tokens = 3;      // Player 2. Max tokens
+
+    gameTurn = true;        // When gameTurn is true means is "X" turn otherwise is "O" turn.
+    currentBoard = ["", "", "", "", "", "", "", "", ""];
+    
+}

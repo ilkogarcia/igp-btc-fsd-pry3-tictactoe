@@ -23,7 +23,7 @@
         <div class="Applogo"></div>
         <div class=""><p class="Appname">TIC TAC TOE</p></div>
         <div>
-            <button type="button" class="Button Button--newgame" id="button-newgame">NEW GAME</button>
+            <button type="button" class="Button Button--newgame" id="newgame-button">NEW GAME</button>
         </div>        
         <!-- Rules Pop-Up (initialy hidden) -->
         <div class="RulesPopUp" id="RulesPopUp">
@@ -36,14 +36,16 @@
                 <li class="RulesPopUp-unorderedlist-element">With all the pieces on the board, it will be possible to make position changes.</li>
             </ul>
             <div>
-                <button type="button" class="Button Button--ok" onclick="hideElement('RulesPopUp')">OK</button>
+                <button type="button" class="Button Button--ok" id="ok-button">OK</button>
             </div>
         </div>
         <!-- help button floting on the bottom left corner-->
         <div>
-            <button type="button" class="Button Button--help" onclick="showElement('RulesPopUp')">?</button>
+            <button type="button" class="Button Button--help" id="help-button">?</button>
         </div>
     </div>
+
     <script src="./js/main.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
