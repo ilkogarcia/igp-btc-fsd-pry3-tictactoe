@@ -1,101 +1,98 @@
-// const board = new Board(["x", "o", "", "x", "o", "", "o", "", "x"]);
-// board.printFormattedBoard();
-// console.log(board.isTerminal());
-// board.insert("o", 7);
-// board.printFormattedBoard();
-// console.log(board.getAvailableMoves());
-// console.log(board.isTerminal());
+/*
+ * Contains methods for handling user events and game states.
+ */
+
+// Setting initial parameters for player 1
+let player1Score = 0;       // Player 1. Initial score
+let player1Tokens = 3;      // Player 1. Max tokens
+
+// Setting initial parameters for player 2
+let player2Score = 0;       // Player 2. Initial score
+let player2Tokens = 3;      // Player 2. Max tokens
 
 
-//Starts a new game with a certain depth and a startingPlayer of 1 if human is going to start
-function newGame(depth = -1, startingPlayer = 1) {
-    //Instantiating a new player and an empty board
-    const player = new Player(parseInt(depth));
-    const board = new Board(["", "", "", "", "", "", "", "", ""]);
+// Initializing game markers
+document.getElementById("player1-name").innerHTML = sessionStorage.getItem("player1-name");
+document.getElementById("player1-score").innerHTML = player1Score;
+document.getElementById("player2-name").innerHTML = sessionStorage.getItem("player2-name");
+document.getElementById("player2-score").innerHTML = player2Score;
 
-    //Clearing all #Board classes and populating cells HTML
-    const boardDIV = document.getElementById("Gameboard");
-    boardDIV.className = "";
-    boardDIV.innerHTML = `<div class="cells-wrap">
-            <button class="cell-0"></button>
-            <button class="cell-1"></button>
-            <button class="cell-2"></button>
-            <button class="cell-3"></button>
-            <button class="cell-4"></button>
-            <button class="cell-5"></button>
-            <button class="cell-6"></button>
-            <button class="cell-7"></button>
-            <button class="cell-8"></button>
-        </div>`;
+// Setting general parameters
+let gameTurn = true;        // When gameTurn is true means is "X" turn otherwise is "O" turn.
+let currentBoard = ["", "", "", "", "", "", "", "", ""];
+let winningBoard = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
 
-    //Storing HTML cells in an array
-    const htmlCells = [...boardDIV.querySelector(".cells-wrap").children];
-
-    //Initializing some variables for internal use
-    const starting = parseInt(startingPlayer),
-        maximizing = starting;
-    let playerTurn = starting;
-}
-
-//If computer is going to start, choose a random cell as long as it is the center or a corner
-if (!starting) {
-    const centerAndCorners = [0, 2, 4, 6, 8];
-    const firstChoice = centerAndCorners[Math.floor(Math.random() * centerAndCorners.length)];
-    const symbol = !maximizing ? "x" : "o";
-    board.insert(symbol, firstChoice);
-    addClass(htmlCells[firstChoice], symbol);
-    playerTurn = 1; //Switch turns
-}
-
-//Adding Click event listener for each cell
-board.state.forEach((cell, index) => {
-    htmlCells[index].addEventListener(
-        "click",
-        () => {
-            //If cell is already occupied or the board is in a terminal state or it's not humans turn, return false
-            if (
-                hasClass(htmlCells[index], "x") ||
-                hasClass(htmlCells[index], "o") ||
-                board.isTerminal() ||
-                !playerTurn
-            )
-                return false;
-            const symbol = maximizing ? "x" : "o"; //Maximizing player is always 'x'
-            //Update the Board class instance as well as the Board UI
-            board.insert(symbol, index);
-            addClass(htmlCells[index], symbol);
-            //If it's a terminal move and it's not a draw, then human won
-            if (board.isTerminal()) {
-                drawWinningLine(board.isTerminal());
-            }
-            playerTurn = 0; //Switch turns
-            //Get computer's best move and update the UI
-            player.getBestMove(board, !maximizing, best => {
-                const symbol = !maximizing ? "x" : "o";
-                board.insert(symbol, parseInt(best));
-                addClass(htmlCells[best], symbol);
-                if (board.isTerminal()) {
-                    drawWinningLine(board.isTerminal());
+// Adding click event listener for each cell on the game board
+let gameBoard = Array.from(document.getElementsByClassName("Gameboard-cell"));
+gameBoard.map (
+    (gameCell) => {
+        gameCell.addEventListener('click', () => {
+            if ((gameCell.innerHTML === "") && (player1Tokens > 0 || player2Tokens > 0)) {
+                // Draw X or O according players turn
+                gameCell.innerHTML = (gameTurn) ? "X" : "O";
+                // Update on memory gameboard status
+                currentBoard[gameCell.id] = (gameTurn) ? "X" : "O";
+                // Check if we have a winner
+                let winner = checkBoardStatus();
+                if (winner != false) {
+                    showWinner(winner.token);
                 }
-                playerTurn = 1; //Switch turns
-            });
-        },
-        false
-    );
-    if (cell) addClass(htmlCells[index], cell);
-});
+                // Decrease a turn to the corresponding player
+                (gameTurn) ? player1Tokens-- : player2Tokens--;
+                // Change in game turn
+                gameTurn = !gameTurn;
+            }
+            gameCell.classList.add('Gameboard-cell-winner');
+        })
+    }
+)
 
-document.addEventListener("DOMContentLoaded", () => {
-    //Start a new game when page loads with default values
-    const depth = -1;
-    const startingPlayer = 1;
-    newGame(depth, startingPlayer);
-    //Start a new game with chosen options when new game button is clicked
-    document.getElementById("newGame").addEventListener("click", () => {
-        const startingDIV = document.getElementById("starting");
-        const starting = startingDIV.options[startingDIV.selectedIndex].value;
-        const depthDIV = document.getElementById("depth");
-        const depth = depthDIV.options[depthDIV.selectedIndex].value;
-        newGame(depth, starting);
-    });
-});
+const checkBoardStatus = () => {
+    // Checking Horizontal Wins
+    if (gameBoard[0].innerHTML === gameBoard[1].innerHTML && gameBoard[0].innerHTML === gameBoard[2].innerHTML && gameBoard[0].innerHTML) {
+        return {'token': gameBoard[0].innerHTML, 'direction': 'H', 'row': 1};
+    }
+    if (gameBoard[3].innerHTML === gameBoard[4].innerHTML && gameBoard[3].innerHTML === gameBoard[5].innerHTML && gameBoard[3].innerHTML) {
+        return {'token': gameBoard[3].innerHTML, 'direction': 'H', 'row': 2};
+    }
+    if (gameBoard[6].innerHTML === gameBoard[7].innerHTML && gameBoard[6].innerHTML === gameBoard[8].innerHTML && gameBoard[6].innerHTML) {
+        return {'token': gameBoard[6].innerHTML, 'direction': 'H', 'row': 3};
+    }
+
+    // Checking Vertical Wins
+    if (gameBoard[0].innerHTML === gameBoard[3].innerHTML && gameBoard[0].innerHTML === gameBoard[6].innerHTML && gameBoard[0].innerHTML) {
+        return {'token': gameBoard[0].innerHTML, 'direction': 'V', 'column': 1};
+    }
+    if (gameBoard[1].innerHTML === gameBoard[4].innerHTML && gameBoard[1].innerHTML === gameBoard[7].innerHTML && gameBoard[1].innerHTML) {
+        return {'token': gameBoard[1].innerHTML, 'direction': 'V', 'column': 2};
+    }
+    if (gameBoard[2].innerHTML === gameBoard[5].innerHTML && gameBoard[2].innerHTML === gameBoard[8].innerHTML && gameBoard[2].innerHTML) {
+        return {'token': gameBoard[2].innerHTML, 'direction': 'V', 'column': 3};
+    }
+
+    // Checking Diagonal Wins
+    if (gameBoard[0].innerHTML === gameBoard[4].innerHTML && gameBoard[0].innerHTML === gameBoard[8].innerHTML && gameBoard[0].innerHTML) {
+        return {'token': gameBoard[0].innerHTML, 'direction': 'D', 'diagonal': 'main'};
+    }
+    if (gameBoard[2].innerHTML === gameBoard[4].innerHTML && gameBoard[2].innerHTML === gameBoard[6].innerHTML && gameBoard[2].innerHTML) {
+        return {'token': gameBoard[2].innerHTML, 'direction': 'D', 'diagonal': 'counter'};
+    }
+    // Return false otherwise
+    return false;
+}
+
+// Pop Up div to show winner 
+const showWinner = (winnerName) => {
+    document.getElementById("winner-name").innerHTML = winnerName;
+    showElement('winner-popup');
+}
+

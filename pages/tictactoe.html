@@ -27,24 +27,24 @@
             </div>
         </div>
         <div class="Gameboard" id="Gameboard">
-            <div class="Gameboard-cell isTopLeftCorner"></div>
-            <div class="Gameboard-cell"></div>
-            <div class="Gameboard-cell isTopRightCorner"></div>
-            <div class="Gameboard-cell"></div>
-            <div class="Gameboard-cell"></div>
-            <div class="Gameboard-cell"></div>
-            <div class="Gameboard-cell isBottomLeftCorner"></div>
-            <div class="Gameboard-cell"></div>
-            <div class="Gameboard-cell isBottomRightCorner"></div>
+            <div id="0" class="Gameboard-cell isTopLeftCorner"></div>
+            <div id="1" class="Gameboard-cell"></div>
+            <div id="2" class="Gameboard-cell isTopRightCorner"></div>
+            <div id="3" class="Gameboard-cell"></div>
+            <div id="4" class="Gameboard-cell"></div>
+            <div id="5" class="Gameboard-cell"></div>
+            <div id="6" class="Gameboard-cell isBottomLeftCorner"></div>
+            <div id="7" class="Gameboard-cell"></div>
+            <div id="8" class="Gameboard-cell isBottomRightCorner"></div>
         </div>
         <div class="Scoreboard">
             <div class="Scoreboard-player1">
-                <p class="Scoreboard-header">1 <span>Jhon</span></p>
-                <p class="Scoreboard-playerscore">1</p>
+                <p class="Scoreboard-header">1 <span id="player1-name"></span></p>
+                <p class="Scoreboard-playerscore" id="player1-score"></p>
             </div>
             <div class="Scoreboard-player2">
-                <p class="Scoreboard-header">2 <span>Olivia</span></p>
-                <p class="Scoreboard-playerscore">0</p>
+                <p class="Scoreboard-header">2 <span id="player2-name"></span></p>
+                <p class="Scoreboard-playerscore" id="player2-score"></p>
             </div>
         </div>
         <body>
@@ -59,7 +59,6 @@
         </div>
 
     </div>
-    <script src="../js/helpers.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/tictactoe.js"></script>
     <script src="../js/main.js"></script>

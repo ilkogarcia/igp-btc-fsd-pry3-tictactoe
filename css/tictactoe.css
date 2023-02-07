@@ -59,15 +59,19 @@ This file contains all styles specific to the game board page.
 }
 
 .Gameboard-cell {
-	width: 100px;
-	height: 100px;
+	width: 5em;
+	height: 5em;
     background-color: rgba(255, 255, 255, 0.9);
-    border: 3px solid var(--orange-color);
+    border: 2px solid var(--orange-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: relative;
 	cursor: pointer;
+}
+
+.Gameboard-cell:hover {
+    background-color: rgba(173, 173, 173, 0.9);
 }
 
 .Gameboard-cell.isTopLeftCorner {
@@ -84,6 +88,10 @@ This file contains all styles specific to the game board page.
 
 .Gameboard-cell.isBottomRightCorner {
     border-bottom-right-radius: 20px 20px;
+}
+
+.Gameboard-cell-winner {
+    background-color: rgba(9, 217, 200, 0.9);
 }
 
 .Scoreboard {
