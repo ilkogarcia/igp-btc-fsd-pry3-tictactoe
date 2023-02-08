@@ -2,24 +2,9 @@
  * Contains methods for handling user data inputs on game setup.
  */
 
-// At the beginning the usernames are empty
+// Variables for players name (at beginning usernames are empty)
 let player1Name = "";
 let player2Name = "";
-
-// Capture inputs lines elements from DOM and save on session storage
-let inputs = Array.from(document.getElementsByTagName("input"));
-inputs.map (
-    (input) => {
-        input.addEventListener('input', () => {
-            (input.name == "player1-name") ? 
-            (player1Name = JSON.stringify(input.value),
-            sessionStorage.setItem("player1-name", player1Name))
-            : 
-            (player2Name = JSON.stringify(input.value),
-            sessionStorage.setItem("player2-name", player2Name))
-        })
-    }
-)
 
 // Pop Up div that show message passed in parameters 
 const showErrMessage = (message) => {
@@ -27,13 +12,22 @@ const showErrMessage = (message) => {
     showElement('message-popup');
 }
 
-// Validate user input, cannot be empty
+// Read user inputs
+const getDataInputs = () => {
+    player1Name = document.getElementById("player1-name").value;
+    player2Name = document.getElementById("player2-name").value;
+}
+
+// Set players name on sessionStorage
+const storePlayersName = () => {
+    sessionStorage.setItem("player1-name", player1Name.trimStart());
+    sessionStorage.setItem("player2-name", player2Name.trimStart());
+}
+
+// Validate user inputs, cannot be empty
 const validateDataInputs = () => {
-    if (player1Name == null || player1Name == "") {
-        showErrMessage("You are missing the name of player 1");
-        return false;
-    } else if (player2Name == null || player2Name == "") {
-        showErrMessage("You are missing the name of player 2");
+    if (player1Name == null || player1Name == "" || player2Name == null || player2Name == "") {
+        showErrMessage("All players name are required. Please fill all field.");
         return false;
     } else return true;
 }
@@ -45,7 +39,11 @@ buttons.map (
         button.addEventListener('click', () => {
             switch (button.name) {
                 case 'playButton' : 
-                    (validateDataInputs()) ? window.location.assign("./tictactoe.html") : null;
+                    getDataInputs();
+                    if (validateDataInputs()) {
+                        storePlayersName();
+                        window.location.assign("./tictactoe.html");
+                    } 
                     break;
                 case 'cancelButton' :
                     window.location.assign("../index.html");
@@ -54,6 +52,8 @@ buttons.map (
         })
     }
 )
+
+
 
 
 

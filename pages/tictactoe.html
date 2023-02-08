@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/winner.css">
+    <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="../css/tictactoe.css">
 
 </head>
@@ -56,6 +57,15 @@
             <div>
                 <button type="button" class="Button Button--play" id="play-button">PLAY AGAIN</button>
                 <button type="button" class="Button Button--newgame" id="new-button">NEW GAME</button>
+            </div>
+        </div>
+
+        <!-- Pop-Up Message (initialy hidden) -->
+        <div class="MessagePopUp" id="message-popup">
+            <h2 class="MessagePopUp-title">WARNING !!!</h2>
+            <div class="MessagePopUp-text" id="messagepopup-text"></div>
+            <div>
+                <button type="button" class="Button Button--ok" id="ok-button" onclick="hideElement('message-popup')">OK</button>
             </div>
         </div>
 

@@ -55,11 +55,18 @@ This file contains styles that are specific to the new game page.
     padding: 10px 20px 10px 20px;
     background-color: rgba(92, 206, 255, 0.6);
     border: 4px solid rgba(92, 124, 255, 0.8);
-    border-radius: 30px;
+    border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+}
+
+.Boxform-buttons {
+    width: 50%;
+    min-width: 250px;
+    text-align: center;
+    vertical-align: center;
 }
 
 .Boxform-datainput {
@@ -94,4 +101,16 @@ This file contains styles that are specific to the new game page.
     color: rgb(92, 124, 255);
 }
 
+/* .sm < | Small devices and down (landscape, phones) less than 768px */
+@media (max-width: 767.98px) {
 
+    .Boxform-datainput-header {
+        margin-top: 2px;  
+    }
+
+    
+    .Boxform-datainput-text {
+        width: 90%;
+        margin-top: 0px;  
+    }
+}
