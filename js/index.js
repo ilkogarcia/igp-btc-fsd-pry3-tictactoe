@@ -12,11 +12,11 @@ newGameButton.addEventListener('click', () => {
 // Capture "HELP" button element
 let helpButton = document.getElementById("help-button");
 helpButton.addEventListener('click', () => {
-    showElement("RulesPopUp");
+    showElement("HelpPopUp");
 })
 
 // Capture "OK" button element
 let okButton = document.getElementById("ok-button");
 okButton.addEventListener('click', () => {
-    hideElement("RulesPopUp");
+    hideElement("HelpPopUp");
 })

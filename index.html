@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <!-- Link the style sheets specially designed for the application -->
     <link rel="stylesheet" href="./css/theme.css">
-    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/buttons.css">
-    <link rel="stylesheet" href="./css/rules.css">
+    <link rel="stylesheet" href="./css/popup.css">
+    <link rel="stylesheet" href="./css/main.css">
 
 </head>
 <body>
@@ -26,13 +26,13 @@
             <button type="button" class="Button Button--newgame" id="newgame-button">NEW GAME</button>
         </div>        
         <!-- Rules Pop-Up (initialy hidden) -->
-        <div class="RulesPopUp" id="RulesPopUp">
-            <h2 class="RulesPopUp-header">GAME RULES</h2>
-            <p class="RulesPopUp-paragraph">To play TIC TAC TOE you must respect these rules:</p>
-            <ul class="RulesPopUp-unorderedlist">
-                <li class="RulesPopUp-unorderedlist-element">You have a maximum of three tokens in play.</li>
-                <li class="RulesPopUp-unorderedlist-element">You can place one token at a time each turn.</li>
-                <li class="RulesPopUp-unorderedlist-element">With all  pieces on the board, you can change any position.</li>
+        <div class="PopUp PopUp--help" id="HelpPopUp">
+            <h2 class="PopUp-title PopUp--help-header">GAME RULES</h2>
+            <p class="PopUp-text PopUp--help-text">To play TIC TAC TOE you must respect these rules:</p>
+            <ul class="PopUp-unorderedlist ">
+                <li class="PopUp-unorderedlist-element">You have a maximum of three tokens in play.</li>
+                <li class="PopUp-unorderedlist-element">You can place one token at a time each turn.</li>
+                <li class="PopUp-unorderedlist-element">With all  pieces on the board, you can change any position.</li>
             </ul>
             <div>
                 <button type="button" class="Button Button--ok" id="ok-button">OK</button>
