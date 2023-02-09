@@ -5,8 +5,8 @@ This file contains styles that are specific to the new game page.
 
 /* Page main container */
 .mainContainer {
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
     background-color: var(--white-color);
     background-image: url(../assets/background-2.jpg);
     background-size: cover;
@@ -14,7 +14,7 @@ This file contains styles that are specific to the new game page.
     background-repeat: no-repeat;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    grid-template-rows: 2fr 1fr 10fr 1fr;
+    grid-template-rows: 1fr 1fr 15fr 1fr;
 }
 
 /* Top bar in this page */
@@ -84,13 +84,13 @@ This file contains styles that are specific to the new game page.
 }
 
 .Boxform-datainput-text {
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
-    border: 3px solid rgba(41, 191, 255, 0.8);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 3px solid rgba(92, 124, 255, 0.4);
     color: var(--black-color);
     width: 250px;
-    height: calc(20px + 5vh);
+    height: calc(20px + 4vh);
     text-align: center;
     font-size: calc(1.25rem + 0.39vw);
 }

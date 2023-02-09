@@ -11,15 +11,15 @@ When having several pages this file contains all common styles
     --dark-red-color: #FF2953;
     --orange-color: rgb(255, 142, 92);
     --fucsia-color: #FF5CCD;
-    --blue-color: #5c7cff;
-    --light-blue-color: #5cceff;
+    --blue-color: rgb(92, 124, 255);
+    --light-blue-color: rgb(92, 206, 255);
     --dark-blue-color: rgb(41, 191, 255);
     --green-color: #a0e4a5;
     --dark-green-color: #78D97F;
 
     --cell-size: 40px;
     --color: #81c3fd; 			/* for hover */
-    --color-set: #0275d8; 		/* when set */
+    --color-set: rgb(2, 117, 216); 		/* when set */
     --l: 10px;					/* X line-width */
 }
 

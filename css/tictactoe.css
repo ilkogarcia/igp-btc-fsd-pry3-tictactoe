@@ -4,8 +4,8 @@ This file contains all styles specific to the game board page.
 */
 
 .mainContainer {
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
     background-color: var(--white-color);
     background-image: url(../assets/background-3.jpg);
     background-size: cover;
@@ -13,7 +13,7 @@ This file contains all styles specific to the game board page.
     background-repeat: no-repeat;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    grid-template-rows: 2fr 1fr 8fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 10fr 2fr 1fr;
 	justify-items: center;
 }
 
@@ -69,6 +69,7 @@ This file contains all styles specific to the game board page.
 	align-items: center;
 	position: relative;
 	cursor: pointer;
+    color: transparent;
 }
 
 .Gameboard-cell:hover {
@@ -89,6 +90,20 @@ This file contains all styles specific to the game board page.
 
 .Gameboard-cell.isBottomRightCorner {
     border-bottom-right-radius: 20px 20px;
+}
+
+.Gameboard-cell-x {
+    background-image: url(../assets/x.svg);
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+}
+
+.Gameboard-cell-y {
+    background-image: url(../assets/o.svg);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
 }
 
 .Gameboard-cell-winner {
